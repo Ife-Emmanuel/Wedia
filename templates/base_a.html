@@ -1,0 +1,72 @@
+{% load static %}
+{% load bootstrap3 %}
+<! doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width= device-width, initial-scale=1,
+        shrink-to-fit=no">
+    <title>Wedia</title>
+    {% bootstrap_css %}
+    {% bootstrap_javascript  jquery='full'%}
+   <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+  </head>
+
+
+  <body>
+    <div id="top" style="position:absolute; top:0px;"></div>
+    <header>
+
+
+      <nav class="navbar navbar-default navbar-static-top" style="background-color : rgb(50, 220, 14);">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed"
+                  data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            </button>
+            <a class="navbar-brand nav-brand-a" href="{% url 'wedia:index' %}"><em>Wedia</em></a>
+          </div>
+
+          <div id="navbar" class="navbar-collapse collapse">
+            {% if user.is_authenticated %}
+              <ul class="nav navbar-nav">
+                <li><a href="#">Repositories</a></li>
+                <li><a href="{% url 'learning_logs:index' %}">Learning Log</a></li>
+              </ul>
+            {% endif %}
+              <ul class="nav navbar-nav navbar-right">
+                {% if user.is_authenticated %}
+                <li><a href="#"><b>Hello {{ user.username }}</b></a></li>
+                <li><a href="{% url 'users:logout' %}">Log out</a></li>
+                {% else %}
+                <li><a href="{% url 'users:signup' %}">register</a></li>
+                <li><a href="{% url 'users:login' %}">Log in</a></li>
+                {% endif %}
+              </ul>
+
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <main role="main" class="mainbg" style="padding: 15px;">
+      <div id="page_header jumbotron">
+        {% block page_header %}{% endblock page_header %}
+      </div>
+      <div id="content jumbotron">
+        {% block content %}{% endblock content %}
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-container">
+        <div class="footer-link-wrapper" style="margin: 25px">
+          <a href="#top">
+          <button class="btn btn-primary"><span style="text-decoration : none">Back to Top</span></button>
+          </a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
+

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block index-nav %}
+        {% if user.is_authenticated %}
+            <ul class="nav navbar-nav">
+              <li><a href="#"><button class="btn btn-primary">Repositories</button></a></li>
+              <li><a href="{% url 'learning_logs:index' %}"><button class="btn btn-primary">Learning Log</button></a></li>
+            </ul>
+          {% endif %}
+            <ul class="nav navbar-nav navbar-right">
+              {% if user.is_authenticated %}
+                <li><a href="#" class="collapse-user-link"><b>Hello {{ user.username }}</b></a></li>
+                <li><a href="{% url 'users:logout' %}"><button class="btn btn-primary">Log out</button></a></li>
+                {% else %}
+                <li><a href="{% url 'users:register' %}"><button class="btn btn-primary">SignUp</button></a></li>
+                <li><a href="{% url 'users:login' %}"><button class="btn btn-primary">Log in</button></a></li>
+              {% endif %}
+            </ul>
+    {% endblock index-nav %}
+<!--{% load static %}-->
+{% block page_header %}
+<!--  <div>-->
+<!--    <img style="width:1310px; height:1200px;" src="{% static 'wedia/images/cat.jpg' %}" alt="cat's picture">-->
+<!--  </div>-->
+  <div class = "homepage"style="box-shadow: 5px 5px 5px black; border-radius: 25px; opacity:1; border: 8px solid lightblue; background-color: blue">
+      <h1 class="display-3" style="text-align:center; color:rgb(80, 300, 150);  padding: 30px;"><b><i>Live Digital Save Digital</i></b></h1>
+    <p class= main-sub-pg-header>You have a portfolio where you can keep track of valuable information.
+        You can save your information in a corresponding repository</p>
+    {% block site_concepts %}{% endblock site_concepts  %}
+  </div>
+{% endblock page_header%}
+{% block content %}
+<div class="main-con">
+   <p style="color: rgb(0, 0, 255);">Wedia helps you to have a live version of your vital documents,
+  keep track of your learning and share your files with other users, groups and organizations</p>
+
+<br>
+</div>
+<!--<a href="{% url 'files_app:image_upload' %}" role="button">Upload file</a>-->
+{% endblock content %}

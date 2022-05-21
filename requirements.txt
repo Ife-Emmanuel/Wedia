@@ -1,0 +1,10 @@
+backports.zoneinfo
+dj-database-url
+Django==4.0.4
+django-cors-headers
+django-on-heroku
+psycopg2-binary
+pytz
+sqlparse
+whitenoise
+django-bootstrap4

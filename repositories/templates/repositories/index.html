@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block page_header %}
+  <div >
+    <h1 class="display-3">Repositories</h1>`
+  </div>
+{% endblock page_header %}
+{% block content %}
+<div>
+  <ul class="card mb-2">
+    {% for repository in repositories_list %}
+      <li class="card-header"><h4>
+        <a href="{% url 'repositories:repository' repository.id %}">{{ repository  }}</a>
+      </h4></li>
+    {% empty %}
+      <li class="card-body"><h3>No repository have been added yet.</h3></li>
+    {% endfor %}
+  </ul>
+
+<!--  <h5><em><a href="{% url 'repositories:new_repository' %}" class="lead">Add a new repository</a></em></h5>-->
+</div>
+{% endblock content %}
+

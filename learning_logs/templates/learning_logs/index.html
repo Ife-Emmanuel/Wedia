@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block page_header %}
+  <div >
+    <h1 class="display-3">Track your learning</h1>
+    <p class="lead">Make your own Learning Log, and keep a list of the
+    topics you're learning about. Whenever you learn something new about
+    a topic, make an entry summarizing what you've learned
+    <a href="{% url 'learning_logs:topics' %}" class="lead">
+          <button class="btn btn-primary"><b><i>Topics</i></b>&raquo;</button>
+    </a>
+
+  </div>
+{% endblock page_header%}
+{% block content %}
+
+<p>Learning Log helps you keep track of your learning, for any topic you're learning about</p>
+{% endblock content %}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block page_header %}
+  <h2>{{ topic }}</h2>
+  <p></p>
+  <h3>Entries :</h3>
+{% endblock page_header %}
+{% block content %}
+  <p>
+    <em><a href="{% url 'learning_logs:new_entry' topic.id %}">Add new entry</a></em>
+  </p>
+
+  {% for files in repository %}
+    <div class="card mb-3">
+      <h4 class="card-header">
+        {{ file.date_added|date:'M d, Y H:i'}}
+          <i>choose</i><file></file>
+      </h4>
+    <div class="card-body">
+      {{ file }}
+    </div>
+    {% empty %}
+      <p>There are no entries for this repository yet.</p>
+  {% endfor %}
+{% endblock content %}

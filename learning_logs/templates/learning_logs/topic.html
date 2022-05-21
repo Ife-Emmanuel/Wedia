@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block page_header %}
+  <h3>{{ topic }}</h3>
+  <p></p>
+  <h2>Entries :</h2>
+{% endblock page_header %}
+{% block content %}
+    <a href="{% url 'learning_logs:new_entry' topic.id %}"class="lead">
+      <button class="btn btn-primary"><b><i>Add a new entry</i></b>&raquo;</button>
+    </a>
+    <hr/>
+    {% for entry in entries %}
+      <div class="card mb-3 jumbotron" style="border-radius : 10px; padding : 20px">
+        <h4 class="card-header">
+          {{ entry.date_added|date:'M d, Y H:i'}}
+          <em class="lead"><a href="{% url 'learning_logs:edit_entry' entry.id %}">
+          Edit Entry</a></em>
+        </h4>
+        <hr/>
+        <hr/>
+        <div class="card-body jumbotron">
+          {{ entry.text|linebreaks }}
+        </div>
+      </div>
+      {% empty %}
+        <p>There are no entries for this topic yet.</p>
+    {% endfor %}
+{% endblock content %}

@@ -1,0 +1,92 @@
+{% load static %}
+{% load bootstrap3 %}
+
+<! DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width= device-width, initial-scale=1,
+        shrink-to-fit=no">
+    <title>Wedia</title>
+    {% bootstrap_css %}
+    {% bootstrap_javascript  jquery='full'%}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+   
+  </head>
+  
+
+  <body class="bodybg">
+    <div id="top"></div>
+
+    <nav class="navbar navbar-default navbar-static-top my-nav">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" style="border : 3px solid green;" class="navbar-toggle collapsed"
+                data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          </button>
+          <a class="navbar-brand nav-brand-a" href="{% url 'wedia:index' %}"><em><b>Wedia</b></em></a>
+        </div>
+
+        <div id="navbar" class="navbar-collapse collapse">
+          {% block index-nav %}
+          {% if user.is_authenticated %}
+            <ul class="nav navbar-nav">
+              <li><a href="#"><button class="btn btn-primary">Repositories</button></a></li>
+              <li><a href="{% url 'learning_logs:index' %}"><button class="btn btn-primary">Learning Log</button></a></li>
+            </ul>
+          {% endif %}
+            <ul class="nav navbar-nav navbar-right">
+              {% if user.is_authenticated %}
+                <li><a href="#" class="collapse-user-link"><b>Hello {{ user.username }}</b></a></li>
+                <li><a href="{% url 'users:logout' %}"><button class="btn btn-primary">Log out</button></a></li>
+                {% else %}
+                <li><a href="{% url 'users:register' %}"><button class="btn btn-primary">SignUp</button></a></li>
+                <li><a href="{% url 'users:login' %}"><button class="btn btn-primary">Log in</button></a></li>
+              {% endif %}
+            </ul>
+          {% endblock index-nav %}
+
+        </div>
+      </div>
+    </nav>
+
+    <main role="main" class="container main">
+      <div id="page_header" class="pb-2 mb-2 border-bottom">
+        {% block page_header %}{% endblock page_header %}
+      </div>
+      <div id="content" >
+        {% block content %}{% endblock content %}
+      </div>
+    </main>
+    {% block footer %}
+      <footer>
+        <div class="footer-container">
+          <div class="footer-link-wrapper" style="margin: 25px">
+            <a href="#top">
+              <button class="btn btn-primary"><span style="text-decoration : none">Back to Top</span></button>
+            </a>
+          </div>
+        </div>
+      </footer>
+    {% endblock footer %}
+  </body>
+</html>
+
+
+ 
+
+<!--1.use the required bootstrap elements where necessary.-->
+<!--I should be able to search a file in the repository-->
+<!--should be able share and send file to another user on the platform or on whatsapp.-->
+<!--User should be notified in their email that they are to receive a file...be able to view.. with it's description and then
+accepts or rejects it(determining whether it will or not be stored in the database.)-->
+
+<!--2. apply the collapsible navbar effect to the base.html.-->
+<!--Learn to handle images and other user media files -->
+<!--3. Go and complete the portfolio website on django.. as well as the wedia part for -->
+<!--repositories of the images(files)-->
+<!--4. Add an email authentication to the wedia site.-->
+<!--5. Learn about apis and rest apis.. -->
+
+<!--6. learn about very about the git and github..then deploy the website and all other -->
+<!--projects that you've worked on.-->
